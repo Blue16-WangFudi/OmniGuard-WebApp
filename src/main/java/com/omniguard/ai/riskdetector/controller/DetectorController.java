@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/detector/multimodal")
+@RequestMapping("/api/v3/detector/multimodal")
 public class DetectorController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class DetectorController {
     }
 
     // 风险检测-多模态
-    @PostMapping("/multimodal/risk")
+    @PostMapping("/risk")
     public ResultResponse<?> multimodalRiskDetector(@RequestBody SecurityRequest<DetectorRequest> securityRequest) throws IOException, InterruptedException {
         // 权限校验
         if (!securityService.checkAccess(securityRequest, "ominguard.detectorcontroller.multimodal.risk")) {
@@ -50,6 +50,11 @@ public class DetectorController {
         Map<String, Object> stringObjectMap = riskDetectorService.detectMultimodaContent(objects);
 
         return new ResultResponse<>(ResultCode.SUCCESS,"成功",stringObjectMap);
+    }
+
+    @PostMapping("/deepfake")
+    public ResultResponse<?> deepfake(@RequestBody SecurityRequest<DetectorRequest> securityRequest){
+        return new ResultResponse<>(ResultCode.SUCCESS,"成功",null);
     }
 
     // 风险检测-纯文本
