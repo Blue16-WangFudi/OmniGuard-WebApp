@@ -1,0 +1,113 @@
+### 风险内容检测多模态
+POST http://localhost:8090/api/v3/detector/multimodal/ai
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "province": "1",
+    "city": "2",
+    "phoneNum": "3",
+    "objects": [{
+      "fileKey": "",
+      "content": "这个是补充提示词，用于说明这些多模态数据是干什么的",
+      "type": "PROMPT"
+    },{
+      "fileKey": "exampledir/exampleobject.txt",
+      "content": "",
+      "type": "TEXT"
+    },{
+      "fileKey": "",
+      "content": "【枪决通知】 因您信贷诈骗，缺席出庭，已通过‘天网’定位具体位置，现已通知当地执法部门和司法人员（魏军，王琳，郭文祯）携带枪支带队，执行上门强制击毙，详情抖音搜索《执行风暴》或关注‘中国法院网’了解详情，14点前自行app结清全部欠款可撤销执行。",
+      "type": "TEXT"
+    },{
+      "fileKey": "exampledir/exampleobject.txt",
+      "content": "这个是带说明的TEXT类型",
+      "type": "TEXT"
+    },{
+      "fileKey": "exampledir/image.png",
+      "content": "",
+      "type": "IMAGE"
+    },{
+      "fileKey": "exampledir/test.wav",
+      "content": "",
+      "type": "AUDIO"
+    },{
+      "fileKey": "exampledir/long.mp4",
+      "content": "",
+      "type": "VIDEO"
+    }]
+  }
+}
+
+### 风险内容检测多模态-单独检测文本
+POST http://localhost:8090/api/v3/detector/multimodal/ai
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "province": "1",
+    "city": "2",
+    "phoneNum": "3",
+    "objects": [{
+      "fileKey": "",
+      "content": "你好呀",
+      "type": "TEXT"
+    }]
+  }
+}
+
+### 风险内容检测多模态-单独检测图片
+POST http://localhost:8090/api/v3/detector/multimodal/ai
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "province": "1",
+    "city": "2",
+    "phoneNum": "3",
+    "objects": [{
+      "fileKey": "exampledir/image.png",
+      "content": "",
+      "type": "IMAGE"
+    }]
+  }
+}
+
+### 风险内容检测多模态-单独检测音频
+POST http://localhost:8090/api/v3/detector/multimodal/ai
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "province": "1",
+    "city": "2",
+    "phoneNum": "3",
+    "objects": [{
+      "fileKey": "exampledir/test.wav",
+      "content": "",
+      "type": "AUDIO"
+    }]
+  }
+}
+
+### 风险内容检测多模态-单独检测视频
+POST http://localhost:8090/api/v3/detector/multimodal/ai
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "province": "1",
+    "city": "2",
+    "phoneNum": "3",
+    "objects": [{
+      "fileKey": "exampledir/long.mp4",
+      "content": "",
+      "type": "VIDEO"
+    }]
+  }
+}
