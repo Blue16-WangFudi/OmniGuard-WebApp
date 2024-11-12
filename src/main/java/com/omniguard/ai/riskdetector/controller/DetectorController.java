@@ -6,6 +6,7 @@ import com.omniguard.ai.riskdetector.dto.SecurityRequest;
 import com.omniguard.ai.riskdetector.dto.request.DetectorRequest;
 import com.omniguard.ai.riskdetector.model.DetectorObject;
 import com.omniguard.ai.riskdetector.service.SecurityService;
+import com.omniguard.ai.riskdetector.service.detector.AiDetectorService;
 import com.omniguard.ai.riskdetector.service.detector.RiskDetectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,9 @@ public class DetectorController {
     RiskDetectorService riskDetectorService;
 
     @Autowired
+    AiDetectorService aiDetectorService;
+
+    @Autowired
     SecurityService securityService;
 
     // 大任务：AI判定、风险判定、AI换脸检测
@@ -33,8 +37,17 @@ public class DetectorController {
 
     // AI检测
     @PostMapping("/ai")
-    public ResultResponse<?> multimodalAiDetector(@RequestBody SecurityRequest<DetectorRequest> securityRequest){
-        return new ResultResponse<>(ResultCode.SUCCESS,"成功",null);
+    public ResultResponse<?> multimodalAiDetector(@RequestBody SecurityRequest<DetectorRequest> securityRequest) throws IOException, InterruptedException {
+        // 权限校验
+        if (!securityService.checkAccess(securityRequest, "ominguard.detectorcontroller.multimodal.ai")) {
+            return new ResultResponse<>(ResultCode.UNAUTHORIZED, "无权访问接口", null);
+        }
+        DetectorRequest detectorRequest = securityRequest.getData();
+        List<DetectorObject> objects = detectorRequest.getObjects();
+        //识别
+        Map<String, Object> stringObjectMap = aiDetectorService.detectMultimodaContent(objects);
+
+        return new ResultResponse<>(ResultCode.SUCCESS,"成功",stringObjectMap);
     }
 
     // 风险检测-多模态
