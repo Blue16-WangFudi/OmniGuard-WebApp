@@ -77,7 +77,7 @@ Content-Type: application/json
 }
 
 ### 风险内容检测多模态-单独检测音频
-POST http://47.119.178.225:8090/api/v1/detector/multimodal/multimodal/risk
+POST http://47.119.178.225:8090/api/v3/detector/multimodal/risk
 Content-Type: application/json
 
 {
@@ -90,6 +90,10 @@ Content-Type: application/json
       "fileKey": "exampledir/test.wav",
       "content": "",
       "type": "AUDIO"
+    },{
+      "fileKey": "",
+      "content": "检测一下这段音频",
+      "type": "PROMPT"
     }]
   }
 }

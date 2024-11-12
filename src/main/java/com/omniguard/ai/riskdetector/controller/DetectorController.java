@@ -8,6 +8,7 @@ import com.omniguard.ai.riskdetector.model.DetectorObject;
 import com.omniguard.ai.riskdetector.service.SecurityService;
 import com.omniguard.ai.riskdetector.service.detector.AiDetectorService;
 import com.omniguard.ai.riskdetector.service.detector.RiskDetectorService;
+import com.omniguard.ai.riskdetector.service.storage.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +32,10 @@ public class DetectorController {
     @Autowired
     SecurityService securityService;
 
-    // 大任务：AI判定、风险判定、AI换脸检测
+    @Autowired
+    ResultService resultService;
 
-    // 每一次检测，都需要
+    // 大任务：AI判定、风险判定、AI换脸检测
 
     // AI检测
     @PostMapping("/ai")
@@ -46,8 +48,8 @@ public class DetectorController {
         List<DetectorObject> objects = detectorRequest.getObjects();
         //识别
         Map<String, Object> stringObjectMap = aiDetectorService.detectMultimodaContent(objects);
-
-        return new ResultResponse<>(ResultCode.SUCCESS,"成功",stringObjectMap);
+        String id = resultService.saveResult("omniguard.aidection", detectorRequest.getCity(), detectorRequest.getPhoneNum(), stringObjectMap);
+        return new ResultResponse<>(ResultCode.SUCCESS,id,stringObjectMap);
     }
 
     // 风险检测-多模态
@@ -61,8 +63,8 @@ public class DetectorController {
         List<DetectorObject> objects = detectorRequest.getObjects();
         //识别
         Map<String, Object> stringObjectMap = riskDetectorService.detectMultimodaContent(objects);
-
-        return new ResultResponse<>(ResultCode.SUCCESS,"成功",stringObjectMap);
+        String id = resultService.saveResult("omniguard.riskdection", detectorRequest.getCity(), detectorRequest.getPhoneNum(), stringObjectMap);
+        return new ResultResponse<>(ResultCode.SUCCESS,id,stringObjectMap);
     }
 
     @PostMapping("/deepfake")

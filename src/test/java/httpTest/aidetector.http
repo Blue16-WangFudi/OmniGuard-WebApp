@@ -52,7 +52,7 @@ Content-Type: application/json
     "phoneNum": "3",
     "objects": [{
       "fileKey": "",
-      "content": "你好呀",
+      "content": "这个提示词将帮助大模型更准确地进行AI内容识别，并按照指定的格式提供结果。希望这能满足您的需求。如果有任何其他要求，请随时告知。",
       "type": "TEXT"
     }]
   }
@@ -95,7 +95,7 @@ Content-Type: application/json
 }
 
 ### 风险内容检测多模态-单独检测视频
-POST http://localhost:8090/api/v3/detector/multimodal/ai
+POST http://47.119.178.225:8090/api/v3/detector/multimodal/ai
 Content-Type: application/json
 
 {

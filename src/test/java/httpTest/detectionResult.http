@@ -1,0 +1,23 @@
+### 通过id精确查找
+POST http://localhost:8090/api/v3/info/database/content
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "id": "5850b065-a6bb-44be-96d1-a34f83505a9e"
+  }
+
+}
+
+### 通过其他条件匹配，一次性返回所有结果
+POST http://localhost:8090/api/v3/info/database/content
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "phoneNum": "3"
+  }
+
+}
