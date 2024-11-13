@@ -1,5 +1,5 @@
 ### 通过服务器名称查询（同样可以添加其他字段）
-POST http://localhost:8090/api/v3/info/server/status
+POST http://47.119.178.225:8090/api/v3/info/server/status
 Content-Type: application/json
 
 {

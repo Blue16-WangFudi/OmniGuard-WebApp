@@ -1,0 +1,23 @@
+
+
+### 风险内容检测多模态-单独检测音频
+POST http://47.119.178.225:8090/api/v3/detector/multimodal/risk
+Content-Type: application/json
+
+{
+	"token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+	"data": {
+		"province": "1",
+		"city": "2",
+		"phoneNum": "3",
+		"objects": [{
+			"fileKey": "exampledir/test.wav",
+			"content": "",
+			"type": "AUDIO"
+		}, {
+			"fileKey": "",
+			"content": "检测此音频信息的安全性",
+			"type": "PROMPT"
+		}]
+	}
+}

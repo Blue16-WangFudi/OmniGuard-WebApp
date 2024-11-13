@@ -147,13 +147,13 @@ public class AiDetectorService {
         params.put("TextContent", textContent);
         params.put("FunctionCall", "aiDetectionResult");
         String userPrompt = systemPromptService.getSystemPromptByName("aidetector_user",params);
-        Map<String, Object> riskDetectionResult = functionCallService.getToolByName("aiDetectionResult");
+        Map<String, Object> aiDetectionResult = functionCallService.getToolByName("aiDetectionResult");
         List<ChatMessage> chatSession = new ArrayList<>();
         chatSession.add(new ChatMessage("system", systemPrompt));
         chatSession.add(new ChatMessage("user", userPrompt));
         Map<String,Object> modelChatRequest = new HashMap<>();
         modelChatRequest.put("messages",chatSession); // 置入消息（Message）
-        modelChatRequest.put("tools",riskDetectionResult);
+        modelChatRequest.put("tools",aiDetectionResult);
         return modelChatRequest;
     }
 
@@ -165,9 +165,9 @@ public class AiDetectorService {
     }
 
     public Map<String, Object> generatePicDescriptionChatRequest(String objectKey) {
-        String systemPrompt = systemPromptService.getSystemPromptByName("riskdetector_system", new HashMap<>());
+        String systemPrompt = systemPromptService.getSystemPromptByName("aidetector_system", new HashMap<>());
         Map<String,String> params = new HashMap<>();
-        String userPrompt = systemPromptService.getSystemPromptByName("riskdetector_imagefeature",params);
+        String userPrompt = systemPromptService.getSystemPromptByName("aidetector_imagefeature",params);
         //Map<String, Object> sendAnalyseResult = functionCallService.getToolByName("send_analyse_result");
         Map<String,Object> modelChatRequest = new HashMap<>();
         modelChatRequest.put("image",ossService.getRealURL(objectKey));
@@ -182,7 +182,7 @@ public class AiDetectorService {
     }
 
     public Map<String, Object> generatePicDescriptionChatRequest(String objectKey,String description) {
-        String systemPrompt = systemPromptService.getSystemPromptByName("riskdetector_system", new HashMap<>());
+        String systemPrompt = systemPromptService.getSystemPromptByName("aidetector_system", new HashMap<>());
         Map<String,String> params = new HashMap<>();
         params.put("description",description);
         String userPrompt = systemPromptService.getSystemPromptByName("riskdetector_imagefeature_includedescription",params);
@@ -212,9 +212,9 @@ public class AiDetectorService {
     }
 
     public Map<String, Object> getAudioDescriptionMap(String objectKey) {
-        String systemPrompt = systemPromptService.getSystemPromptByName("riskdetector_system", new HashMap<>());
+        String systemPrompt = systemPromptService.getSystemPromptByName("aidetector_system", new HashMap<>());
         Map<String,String> params = new HashMap<>();
-        String userPrompt = systemPromptService.getSystemPromptByName("riskdetector_audiofeature",params);
+        String userPrompt = systemPromptService.getSystemPromptByName("aidetector_audiofeature",params);
         //Map<String, Object> sendAnalyseResult = functionCallService.getToolByName("send_analyse_result");
         Map<String,Object> modelChatRequest = new HashMap<>();
         modelChatRequest.put("audio",ossService.getRealURL(objectKey));
@@ -235,9 +235,9 @@ public class AiDetectorService {
     }
 
     private Map<String, Object> getVideoDescriptionMap(String objectKey) {
-        String systemPrompt = systemPromptService.getSystemPromptByName("riskdetector_system", new HashMap<>());
+        String systemPrompt = systemPromptService.getSystemPromptByName("aidetector_system", new HashMap<>());
         Map<String,String> params = new HashMap<>();
-        String userPrompt = systemPromptService.getSystemPromptByName("riskdetector_videofeature",params);
+        String userPrompt = systemPromptService.getSystemPromptByName("aidetector_videofeature",params);
         //Map<String, Object> sendAnalyseResult = functionCallService.getToolByName("send_analyse_result");
         Map<String,Object> modelChatRequest = new HashMap<>();
         modelChatRequest.put("video",ossService.getRealURL(objectKey));

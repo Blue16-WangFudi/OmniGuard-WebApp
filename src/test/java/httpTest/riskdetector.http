@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### 风险内容检测多模态-单独检测文本
-POST http://47.119.178.225:8090/api/v1/detector/multimodal/multimodal/risk
+POST http://47.119.178.225:8090/api/v3/detector/multimodal/risk
 Content-Type: application/json
 
 {
