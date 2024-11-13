@@ -22,8 +22,8 @@ public class ServerInfo {
     private String serverName; // 服务器名称，用于显示在主界面上
 
     // 负载均衡相关参数
-    private double network;// 网络延迟，越小越好
-    private int performance;// 性能指数，越大越好
+    private Double network;// 网络延迟，越小越好
+    private Integer performance;// 性能指数，越大越好
 
     // 服务器动态属性，实时情况
     private Map<String,Capability> capabilities;

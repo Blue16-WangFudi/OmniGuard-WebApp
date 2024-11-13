@@ -48,7 +48,7 @@ public class DetectorController {
         List<DetectorObject> objects = detectorRequest.getObjects();
         //识别
         Map<String, Object> stringObjectMap = aiDetectorService.detectMultimodaContent(objects);
-        String id = resultService.saveResult("omniguard.aidection", detectorRequest.getCity(), detectorRequest.getPhoneNum(), stringObjectMap);
+        String id = resultService.saveResult("omniguard.aidection", detectorRequest.getCity(), detectorRequest.getPhoneNum(),securityRequest.getData().getObjects(), stringObjectMap);
         return new ResultResponse<>(ResultCode.SUCCESS,id,stringObjectMap);
     }
 
@@ -63,7 +63,7 @@ public class DetectorController {
         List<DetectorObject> objects = detectorRequest.getObjects();
         //识别
         Map<String, Object> stringObjectMap = riskDetectorService.detectMultimodaContent(objects);
-        String id = resultService.saveResult("omniguard.riskdection", detectorRequest.getCity(), detectorRequest.getPhoneNum(), stringObjectMap);
+        String id = resultService.saveResult("omniguard.riskdection", detectorRequest.getCity(), detectorRequest.getPhoneNum(),securityRequest.getData().getObjects(),stringObjectMap);
         return new ResultResponse<>(ResultCode.SUCCESS,id,stringObjectMap);
     }
 

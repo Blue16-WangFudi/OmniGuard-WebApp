@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.omniguard.ai</groupId>
 	<artifactId>riskdetector</artifactId>
-	<version>0.3.0-alpha</version>
+	<version>0.4.0-alpha</version>
 	<name>OmniGuard-WebApp</name>
 	<description>OmniGuard-WebApp</description>
 	<url/>

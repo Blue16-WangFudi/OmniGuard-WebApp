@@ -1,0 +1,10 @@
+### 通过服务器名称查询（同样可以添加其他字段）
+POST http://localhost:8090/api/v3/info/server/status
+Content-Type: application/json
+
+{
+  "token": "0c97a6b8-9142-486c-a304-83a3e745614b",
+  "data": {
+    "serverName": "OminGuard_Client_Ubuntu"
+  }
+}
